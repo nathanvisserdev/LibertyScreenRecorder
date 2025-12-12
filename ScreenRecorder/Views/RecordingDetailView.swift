@@ -41,7 +41,9 @@ struct RecordingDetailView: View {
                 .padding()
             }
             .navigationTitle("Recording Details")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") {

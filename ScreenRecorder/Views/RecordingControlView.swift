@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecordingControlView: View {
     @StateObject private var recordingManager = ScreenRecordingManager()

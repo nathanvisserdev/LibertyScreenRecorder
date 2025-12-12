@@ -9,6 +9,7 @@ import Foundation
 import AVFoundation
 import ReplayKit
 import SwiftUI
+import Combine
 
 #if os(macOS)
 import ScreenCaptureKit
@@ -461,10 +462,10 @@ class ScreenRecordingManager: ObservableObject {
     private func startTimer() {
         recordingTimer?.invalidate()
         recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            guard let self = self,
-                  let startTime = self.recordingStartTime else { return }
+            guard let self = self else { return }
             
             Task { @MainActor in
+                guard let startTime = self.recordingStartTime else { return }
                 self.recordingDuration = Date().timeIntervalSince(startTime)
             }
         }
